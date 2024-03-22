@@ -3,11 +3,19 @@ package router
 import (
 	"MyGram/controllers"
 	"MyGram/middleware"
+	"net/http"
+
 	"github.com/gin-gonic/gin"
 )
 
 func StartApp() *gin.Engine {
 	r := gin.Default()
+
+	r.GET("/", func(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{
+			"message": "Welcome to MyGram",
+		})
+	})
 
 	userRouter := r.Group("/users")
 	{
