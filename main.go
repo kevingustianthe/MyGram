@@ -4,7 +4,6 @@ import (
 	"MyGram/database"
 	"MyGram/router"
 	"log"
-	"os"
 
 	"github.com/joho/godotenv"
 )
@@ -17,7 +16,7 @@ func main() {
 
 	database.StartDB()
 	r := router.StartApp()
-	err = r.Run(os.Getenv("PORT"))
+	err = r.Run()
 	if err != nil {
 		return
 	}
