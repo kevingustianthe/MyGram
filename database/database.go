@@ -17,10 +17,7 @@ var (
 )
 
 func StartDB() {
-	err = godotenv.Load(".env")
-	if err != nil {
-		log.Fatal(".env is not loaded properly")
-	}
+	godotenv.Load(".env")
 
 	config := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable", os.Getenv("PG_HOST"), os.Getenv("PG_USER"), os.Getenv("PG_PASS"), os.Getenv("PG_DB_NAME"), os.Getenv("PG_PORT"))
 	dsn := config
