@@ -18,10 +18,7 @@ var (
 
 func StartDB() {
 	godotenv.Load(".env")
-
-	config := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable", os.Getenv("PG_HOST"), os.Getenv("PG_USER"), os.Getenv("PG_PASS"), os.Getenv("PG_DB_NAME"), os.Getenv("PG_PORT"))
-	dsn := config
-	db, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	db, err = gorm.Open(postgres.Open(os.Getenv("DATABASE_URL")), &gorm.Config{})
 
 	if err != nil {
 		log.Fatal("error connecting to database :", err)
